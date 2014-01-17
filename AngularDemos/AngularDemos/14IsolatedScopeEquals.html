@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Isolated Scope "="</h1>
+
+    <div data-ng-controller="appCtrl">
+        <!-- flavor gets the value from the controller (but is not parsed into string) and passes it to the directive as a property, the value which is spitted out in the template
+            So, a 2-way binding is setup between the controller property and the directive-->
+        Drink: <strong drink flavor="ctrlFlavor"></strong>
+    </div>
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("appCtrl", function ($scope) {
+            $scope.ctrlFlavor = "Blackberry";
+        });
+
+        app.directive('drink', function () {
+            return {
+                restrict: "A",
+                scope: {
+                    flavor: "="
+                },
+                template: '<span>{{flavor}}</span>'
+            };
+        });
+
+    </script>
+</body>
+</html>

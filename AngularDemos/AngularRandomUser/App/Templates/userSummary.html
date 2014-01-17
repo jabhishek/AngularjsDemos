@@ -1,0 +1,14 @@
+﻿<div ng-click="show(user)">
+    <img ng-src="{{user.picture}}" />
+    <div class="userAttr">
+        <span>{{$index}} {{user.title + " " + user.firstName}} {{user.lastName}}</span>
+        <span>Age: ({{user.age}})</span>
+    </div>
+    <div class="userAttr">
+        <address>
+            <span>{{user.address.street}}</span>
+            <span>{{user.address.city}}</span>
+            <span>{{user.address.state}}</span>
+        </address>
+    </div>
+</div>

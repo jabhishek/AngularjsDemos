@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        h1 a {
+            font-size: 0.5em;
+        }
+
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>
+        Animation
+        <a href="http://docs.angularjs.org/guide/animations">Reference</a>
+    </h1>
+
+    <div ng-controller="AppCtrl">
+        <button class="btn" ng-click="toggle=!toggle">Toggle Animation</button>
+        <div class="toggle" ng-if="toggle">
+            Some content!!
+        </div>
+    </div>
+
+
+    <script src="Scripts/jquery-1.10.1.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    
+
+    <script>
+        var app = angular.module("myApp", ['ngAnimate']);
+
+        app.controller('AppCtrl', ['$scope', function ($scope) {
+            $scope.toggle = true;
+        }]);
+
+        app.animation(".toggle", function () {
+            return {
+                leave: function (element) {
+                    TweenMax.fromTo(element[0], 1, {opacity: 1}, {opacity: 0});
+                },
+                enter: function (element) {
+                    TweenMax.fromTo(element[0], 1, { opacity: 0 }, { opacity: 1 });
+                }
+            }
+        })
+    </script>
+</body>
+</html>

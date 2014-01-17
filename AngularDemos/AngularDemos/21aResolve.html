@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        h1 a {
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Resolve
+    <!--<a href="http://docs.angularjs.org/api/ngRoute.directive:ngView">Reference</a>--></h1>
+
+    <div ng-view=""></div>
+
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+
+        app.config(function ($routeProvider) {
+            $routeProvider.when('/', {
+                templateUrl: "app.html",
+                controller: "AppCtrl", 
+                resolve: {
+                    app: function ($q, $timeout) {
+                        var defer = $q.defer();
+                        // The controller will be invoked only once the promise has been resolved. If we comment the below line, controller won't be invoked.
+                        $timeout(function () {
+                            // The controller is loaded after 2 seconds...
+                            defer.resolve();
+                        }, 2000);
+                        return defer.promise;
+
+                    }
+                }
+            });
+        });
+
+        app.controller("AppCtrl", ['$scope', '$q', function ($scope, $q) {
+            $scope.model = {
+                message: "This is my app!!!"
+            };
+        }]);
+    </script>
+</body>
+</html>

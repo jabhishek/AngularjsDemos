@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        h1 a {
+            font-size: 0.5em;
+        }
+
+        .toggle {
+            padding: 10px;
+            -moz-transition: linear 1s;
+            -o-transition: linear 1s;
+            -webkit-transition: linear 1s;
+            transition: linear 1s;
+        }
+
+            .toggle.ng-enter {
+                opacity: 0;
+            }
+
+            .toggle.ng-enter-active {
+                opacity: 1;
+            }
+
+            .toggle.ng-leave {
+                opacity: 1;
+            }
+
+            .toggle.ng-leave-active {
+                opacity: 0;
+            }
+
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>
+        Animation
+        <a href="http://docs.angularjs.org/guide/animations">Reference</a>
+    </h1>
+
+    <div ng-controller="AppCtrl">
+        <button class="btn" ng-click="toggle=!toggle">Toggle Animation</button>
+        <div class="toggle" ng-if="toggle">
+            Some content!!
+        </div>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+
+    <script>
+        var app = angular.module("myApp", ['ngAnimate']);
+
+        app.controller('AppCtrl', ['$scope', function ($scope) {
+            $scope.toggle = true;
+        }]);
+    </script>
+</body>
+</html>

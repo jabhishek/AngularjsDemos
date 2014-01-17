@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+</head>
+<body data-ng-app="myApp">
+    <h1>Angularjs Demos</h1>
+
+    <!-- Rather than using a service in the 3rd demo, we should have used a filter  -->
+    <div data-ng-controller="FirstController">
+        <input type="text" data-ng-model="data.message" />
+        <div>{{data.message}}</div>
+    </div>
+    <br/>
+    <div data-ng-controller="SecondController">
+        <input type="text" data-ng-model="data.message" />
+        <div>{{data.message | reverse}}</div>
+    </div>
+
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.factory('Data', function () {
+            return { message: "Message from service" };
+        });
+
+        // Can even inject dependencies to the filter (Data service in this example)... 
+        app.filter('reverse', function(Data) {
+            return function(text) {
+                return text.split("").reverse().join("") +  " " + Data.message;
+            };
+        });
+
+        function FirstController($scope, Data) {
+            $scope.data = Data;
+
+        }
+
+
+        function SecondController($scope, Data) {
+            $scope.data = Data;
+          /*  
+            $scope.reversed = function (message) {
+                return message.split("").reverse().join("");
+            };*/
+        }
+    </script>
+</body>
+</html>

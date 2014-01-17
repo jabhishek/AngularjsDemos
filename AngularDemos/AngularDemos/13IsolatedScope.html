@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Directive To Directive Communication</h1>
+
+    <div data-ng-controller="appCtrl">
+        <kid done="logChore(chore)"></kid>
+    </div>
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("appCtrl", function ($scope) {
+            $scope.logChore = function (chore) {
+                console.log(chore + " is done.");
+            };
+        });
+
+        app.directive('kid', function () {
+            return {
+                restrict: "E",
+                // This isolates the scope from other directives
+                scope: {
+                    done: "&"
+                },
+                template: '<input type="text" ng-model="chore"/>' +
+                    ' {{ chore }} ' +
+                    '<div class="btn btn-success" ng-click="done({chore: chore})">I am done!!</div>'
+            };
+        });
+
+    </script>
+</body>
+</html>

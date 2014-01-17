@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Isolated Scope "="</h1>
+
+    <div data-ng-controller="appCtrl">
+        <panel>
+            <div class="btn btn-info">Click Me!!</div>
+        </panel>
+    </div>
+    
+
+    <script src="Scripts/angular.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("appCtrl", function ($scope) {
+        });
+
+        app.directive('panel', function () {
+            return {
+                restrict: "E",
+                transclude: true,
+                template: '<div class="panel" ng-transclude>This is a panel component</div>'
+            };
+        });
+
+    </script>
+</body>
+</html>

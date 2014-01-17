@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Isolated Scope "="</h1>
+
+    <div data-ng-controller="appCtrl">
+        <!-- Always put the script inside the app -->
+        <script type="text/ng-template" id="zippy.html">
+            <div class="panel"><h3 ng-click="toggleContent()">{{title}}</h3><div ng-show="isContentVisible" ng-transclude></div></div>
+        </script>
+        <input type="text" ng-model="model.title"><br/>
+        <input type="text" ng-model="model.content">
+        <zippy title="{{model.title}}">
+            {{model.content}}
+        </zippy>
+    </div>
+
+
+    <script src="Scripts/angular.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        // This array type declaration works well with minification as the dependency is passed as the string. 
+        // The actual parameter in the function can be any name as it will be mapped to the corresponding dependency in the array ($scope will be mapped to someParameter in this case)
+        app.controller("appCtrl", ['$scope', function (someParameter) {
+        }]);
+
+        app.directive('zippy', function () {
+            return {
+                restrict: "E",
+                scope: {
+                  title: "@"  
+                },
+                transclude: true,
+                templateUrl: 'zippy.html',
+                link: function (scope) {
+                    scope.isContentVisible = false;
+                    scope.toggleContent = function() {
+                        scope.isContentVisible = !scope.isContentVisible;
+                    };
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

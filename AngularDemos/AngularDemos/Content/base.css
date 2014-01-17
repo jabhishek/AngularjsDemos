@@ -1,0 +1,46 @@
+﻿html,
+html a {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  padding: 1.25em;
+  font-size: 90%;
+  line-height: 1.5;
+}
+@media only screen and (min-width: 37.5em) {
+  body {
+    font-size: 100%;
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  line-height: 1.1;
+}
+input,
+label,
+textarea {
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  font-size: 1em;
+}
+h1 {
+  font-size: 1.8em;
+  margin-bottom: 0.75em;
+}
+.main {
+  margin-bottom: 1em;
+}

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+</head>
+<body data-ng-app="">
+    <h1>Angularjs Demos</h1>
+    <input type="text" data-ng-model="data.message" />
+    <div>{{data.message}}</div>
+    <div data-ng-controller="FirstController">
+        <!-- Note 1. If the message property is overriden in the controller, then the property in the global scope will be overriden and replaced with the value (and binding) from the controller -->
+        <!-- Also, the change in input value in the global scope will not change the input value in the scope of FirstController and vice versa -->
+        <input type="text" data-ng-model="data.message" />
+        <div>{{data.message}}</div>
+    </div>
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        function FirstController($scope) {
+            console.log("Hello from controller");
+            // Note 1 //
+            // $scope.data = { message: "Hello World!!" };
+        }
+    </script>
+</body>
+</html>

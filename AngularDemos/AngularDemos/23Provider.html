@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        h1 a {
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Resolve Conventions
+    <!--<a href="http://docs.angularjs.org/api/ngRoute.directive:ngView">Reference</a>-->
+    </h1>
+
+    <div ng-controller="AppCtrl">
+        <h1 class="panel">{{title}}</h1>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.provider("game", function () {
+            var type = "Mine";
+            return {
+                setType: function (value) {
+                    type = value;
+                },
+                $get: function () {
+                    return {
+                        title: type + "Craft"
+                    };
+                }
+
+            };
+        });
+
+        app.config(function(gameProvider) {
+            gameProvider.setType("War");
+        });
+
+        app.controller("AppCtrl", function ($scope, game) {
+            // cannot call setType here. Can only be called in config
+            //game.setType("Puzzle");
+            $scope.title = game.title;
+        });
+
+
+    </script>
+</body>
+</html>

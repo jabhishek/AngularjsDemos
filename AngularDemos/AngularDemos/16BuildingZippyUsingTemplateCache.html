@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        h1 a {
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>templateCache
+    <a href="http://docs.angularjs.org/api/ng.$templateCache">Reference</a></h1>
+
+    <div data-ng-controller="appCtrl">
+        <!-- Always put the script inside the app 
+            No need if you are putting the template in templateCache -->
+        <!--
+        <script type="text/ng-template" id="zippy.html">
+            <div class="panel"><h3 ng-click="toggleContent()">{{title}}</h3><div ng-show="isContentVisible" ng-transclude></div></div>
+        </script>
+-->
+        <input type="text" ng-model="model.title"><br />
+        <input type="text" ng-model="model.content">
+        <zippy title="{{model.title}}">
+            {{model.content}}
+        </zippy>
+    </div>
+
+
+        <script src="Scripts/angular.js"></script>
+        <script>
+            var app = angular.module("myApp", []);
+
+            app.run(function ($templateCache) {
+                $templateCache.put('zippy.html', '<div class="panel"><h3 ng-click="toggleContent()">{{title}}</h3><div ng-show="isContentVisible" ng-transclude></div></div>');
+            });
+
+            app.controller("appCtrl", ['$scope', function (someParameter) {
+            }]);
+
+            app.directive('zippy', function ($templateCache) {
+                /*if you create a template and store it in a script tag or load it in or anything, it's going to drop it into a template cache.
+                So, the best thing to do is to put the template in templateCache in the run phase (rather than defining the script tag) and get whenever you want it.. */
+                // console.log($templateCache.get('zippy.html'));
+                return {
+                    restrict: "E",
+                    transclude: true,
+                    scope: {
+                        title: "@"
+                    },
+                    templateUrl: 'zippy.html',
+                    link: function (scope) {
+                        scope.isContentVisible = false;
+
+                        scope.toggleContent = function () {
+                            scope.isContentVisible = !scope.isContentVisible;
+                        };
+                    }
+                };
+            });
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+</head>
+<body data-ng-app="myApp">
+    <h1>In-Built Filters</h1>
+
+    <div>
+        <div enter leave>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.
+        </div>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.directive('enter', function () {
+            return {
+                restrict: "A",
+                link: function(scope, element) {
+                    element.bind("mouseenter", function() {
+                        console.log("Mouse Enter!!");
+                        console.log(this);
+                    });
+                }
+            };
+        });
+
+        app.directive('leave', function () {
+            return {
+                restrict: "A",
+                link: function(scope, element) {
+                    element.bind("mouseleave", function() {
+                        console.log("Mouse Leave!!");
+                        console.log(this);
+                        
+                    });
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

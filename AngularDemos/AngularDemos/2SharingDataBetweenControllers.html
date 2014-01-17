@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+</head>
+<body data-ng-app="myApp">
+    <h1>Angularjs Demos</h1>
+
+    <!-- The first data.message will not bind to the second data.message as there is no data.message in the global scope to glue them...
+        So, in order to share data between them, we will have to use a service -->
+    <div data-ng-controller="FirstController">
+        <input type="text" data-ng-model="data.message" />
+        <div>{{data.message}}</div>
+    </div>
+
+    <div data-ng-controller="SecondController">
+        <input type="text" data-ng-model="data.message" />
+        <div>{{data.message}}</div>
+    </div>
+
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.factory('Data', function () {
+            return { message: "Message from service" };
+        });
+
+
+        function FirstController($scope, Data) {
+            $scope.data = Data;
+        }
+
+
+        function SecondController($scope, Data) {
+            $scope.data = Data;
+        }
+    </script>
+</body>
+</html>

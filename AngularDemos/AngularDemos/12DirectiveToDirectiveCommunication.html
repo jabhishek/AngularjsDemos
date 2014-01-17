@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Directive To Directive Communication</h1>
+
+    <superhero speed flight strength class="btn btn-success">SuperMan</superhero>
+    <superhero speed class="btn btn-success">The Flash</superhero>
+    <superhero speed flight class="btn btn-success">Iron Man</superhero>
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.directive('superhero', function () {
+            return {
+                restrict: "E",
+                // This isolates the scope from other directives
+                scope: {},
+                controller: function ($scope) {
+                    $scope.abilities = [];
+                    this.addStrength = function() {
+                        $scope.abilities.push("strength");
+                    };
+                    this.addSpeed = function () {
+                        $scope.abilities.push("speed");
+                    };
+                    this.addFlight = function () {
+                        $scope.abilities.push("flight");
+                    };
+                },
+                link: function (scope, element, attrs) {
+                    element.bind("mouseenter", function () {
+                        console.log(scope.abilities);
+                    });
+                }
+            };
+        });
+
+        app.directive('strength', function () {
+            return {
+                // gives access to the controller of superhero directive
+                require: "superhero",
+                link: function (scope, element, attrs, superController) {
+                        superController.addStrength();
+                }
+            };
+        });
+
+        app.directive('speed', function () {
+            return {
+                // gives access to the controller of superhero directive
+                require: "superhero",
+                link: function (scope, element, attrs, superController) {
+                        superController.addSpeed();
+                }
+            };
+        });
+
+        app.directive('flight', function () {
+            return {
+                // gives access to the controller of superhero directive
+                require: "superhero",
+                link: function (scope, element, attrs, superController) {
+                        superController.addFlight();
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

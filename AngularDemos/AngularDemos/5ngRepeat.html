@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+</head>
+<body data-ng-app="myApp">
+    <h1>In-Built Filters - ngRepeat</h1>
+
+    <!-- Search using in-built filter  -->
+    <!-- By using search.name we are restricting the search in name field  -->
+    <!-- You can use saecrh.$ to search in all fields  -->
+    <input type="text" data-ng-model="search.$"/>
+    <div data-ng-controller="AvengersCtrl">
+        <table>
+            <tr data-ng-repeat="actor in avengers.cast | filter:search">
+                <td>{{actor.name}}</td>
+                <td>{{actor.character}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.factory('Avengers', function () {
+            var Avengers = {};
+            Avengers.cast = [
+                {
+                    name: "Robert Downey Jr.",
+                    character: "Tony Stark / Iron Man"
+                },
+                {
+                    name: "Chris Evans",
+                    character: "Steve Rogers / Captain America"
+                },
+                {
+                    name: "Mark Ruffalo",
+                    character: "Bruce Banner / The Hulk"
+                },
+                {
+                    name: "Chris Hemsworth",
+                    character: "Thor"
+                },
+                {
+                    name: "Scarlett Johansson",
+                    character: "Natasha Romanoff / Black Widow"
+                },
+                {
+                    name: "Jeremy Renner",
+                    character: "Clint Barton / Hawkeye"
+                },
+                {
+                    name: "Tom Hiddleston",
+                    character: "Loki"
+                },
+                {
+                    name: "Clark Gregg",
+                    character: "Agent Phil Coulson"
+                },
+                {
+                    name: "Cobie Smulders",
+                    character: "Agent Maria Hill"
+                },
+                {
+                    name: "Stellan Skarsgard",
+                    character: "Selvig"
+                },
+                {
+                    name: "Samuel L. Jackson",
+                    character: "Nick Fury"
+                },
+                {
+                    name: "Gwyneth Paltrow",
+                    character: "Pepper Potts"
+                },
+                {
+                    name: "Paul Bettany",
+                    character: "Jarvis (voice)"
+                },
+                {
+                    name: "Alexis Denisof",
+                    character: "The Other"
+                },
+                {
+                    name: "Tina Benko",
+                    character: "NASA Scientist"
+                }
+            ];
+            return Avengers;
+        });
+
+        function AvengersCtrl($scope, Avengers) {
+            $scope.avengers = Avengers;
+        }
+    </script>
+</body>
+</html>

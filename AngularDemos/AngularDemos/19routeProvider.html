@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        h1 a {
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>$routeProvider
+    <a href="http://docs.angularjs.org/api/ngRoute.$routeProvider">Reference</a></h1>
+
+    <div data-ng-view=""></div>
+
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+
+
+        app.config(function ($routeProvider, $locationProvider) {
+            $routeProvider
+            /* anything after the : is treated as routeParam and can be accessed in the controller using $routeParams */
+                .when('/map/:country/:state/:city',
+                  {
+                      templateUrl: "app.html",
+                      controller: "AppCtrl"
+                  })
+                .when('/pizza', {
+                    template: "<div>Pizza</div>",
+                })
+                .when('/Custompizza/:crust/:toppings', {
+                    redirectTo: function(routeParams, path, search) {
+                        console.log(routeParams);
+                        console.log(path);
+                        console.log(search);
+                        return "/" + routeParams.crust;
+                    },
+                })
+                .when('/deep', {
+                    template: "<div>Deep Crust</div>",
+                })
+
+                .otherwise({
+                    redirectTo: "/pizza"
+                })
+            ;
+        });
+
+        /* As we have added $routeProvider, we can access $route in the controller. In the config function, use $routeProvider as it expects a provider name, 
+        but in controller and elsewhere don't use the 'provider' at the end as it tries to find the provider with 'provider' added at the end. 
+        So, if you add dependency of $route to the controller, it will try to find $routeProvider   */
+        app.controller("AppCtrl", ['$scope', '$route', '$routeParams', function ($scope, $route, $routeParams) {
+            console.log($routeParams.message);
+            $scope.model = {
+                message: "Address: " +
+                    $routeParams.country + ", " +
+                    $routeParams.state + ", " +
+                    $routeParams.city + ", "
+            };
+        }]);
+
+        app.controller("PizzaCtrl", ['$scope', '$route', '$routeParams', function ($scope, $route, $routeParams) {
+            console.log($routeParams.message);
+            $scope.model = {
+                message: "Address: " +
+                    $routeParams.country + ", " +
+                    $routeParams.state + ", " +
+                    $routeParams.city + ", "
+            };
+        }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+    
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Directive Talking to Controllers</h1>
+
+    <div>
+        <div data-ng-controller="AppCtrl">
+            <div enter="loadMoreTweets()">Roll over to Load more tweets</div>
+        </div>
+      
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("AppCtrl", function($scope) {
+            $scope.loadMoreTweets = function() {
+                console.log("Loading tweets");
+            };
+        });
+
+        app.directive('enter', function () {
+            return {
+                restrict: "A",
+                link: function(scope, element, attrs) {
+                    element.bind("mouseenter", function() {
+                        // The below line is same as same as scope.loadMoreTweets();
+                        // $apply parses the string into a method: scope.$apply("loadMoreTweets()");
+                      //  scope.$apply("loadMoreTweets()");
+                        // So the better way is to pass the method name from the attribute and then call it using $apply. This keeps a separation between the directive 
+                        // and the controller. 
+                        scope.$apply(attrs.enter);
+                    });
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

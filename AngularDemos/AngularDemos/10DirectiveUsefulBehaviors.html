@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+    
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Directive Useful Behavior</h1>
+
+    <div>
+        <div enter="panel" leave>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.
+        </div>
+        <br/>
+        <div enter="panel" leave>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper.
+        </div>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.directive('enter', function () {
+            return {
+                restrict: "A",
+                link: function(scope, element, attrs) {
+                    element.bind("mouseenter", function() {
+                        element.addClass(attrs.enter);
+                    });
+                }
+            };
+        });
+
+        app.directive('leave', function () {
+            return {
+                restrict: "A",
+                link: function (scope, element, attrs) {
+                    /* attrs will contain all attributes on the element. That's why attrs.enter is available inside leave directive too...*/
+                    element.bind("mouseleave", function() {
+                        element.removeClass(attrs.enter);
+                    });
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

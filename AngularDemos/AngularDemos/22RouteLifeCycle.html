@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/base.css" rel="stylesheet" />
+
+    <style>
+        .panel {
+            background: #eee;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        h1 a {
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body data-ng-app="myApp">
+    <h1>Resolve Conventions
+    <!--<a href="http://docs.angularjs.org/api/ngRoute.directive:ngView">Reference</a>-->
+    </h1>
+
+    <!-- ngView is surrounded by another controller which will handle any routing errors-->
+    <div ng-controller="AppCtrl">
+        <error></error>
+        <div ng-view=""></div>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+
+        app.run(function ($templateCache) {
+            $templateCache.put('app1.html', '<a ng-click="changeRoute()">Change route</a>');
+            $templateCache.put('new.html', "Hi, I'm new here!");
+        });
+
+        app.config(function ($routeProvider, $locationProvider) {
+            $routeProvider
+                .when('/',
+                    {
+                        templateUrl: "app1.html",
+                        controller: "ViewCtrl",
+                    })
+                .when('/new',
+                    {
+                        templateUrl: 'new.html',
+                        controller: "NewCtrl",
+                        resolve: {
+                            loadData: viewCtrl.loadData
+                        }
+                    });
+        });
+
+        app.directive("error", function ($rootScope) {
+            return {
+                restrict: "E",
+                template: '<div class="alert-danger alert" ng-show="isError">Error!!!!</div>',
+                link: function (scope) {
+                    $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
+                        scope.isError = true;
+                    });
+                }
+            };
+        });
+
+        app.controller("AppCtrl", function ($scope, $rootScope, $route, $location) {
+            $rootScope.$on("$routeChangeStart", function (event, current, previous, resolve) {
+                console.log("Inside routeChangeStart");
+                console.log($scope, $rootScope, $route, $location);
+            });
+            $rootScope.$on("$routeChangeSuccess", function (event, current, previous, resolve) {
+                console.log("Inside routeChangeSuccess");
+                console.log($scope, $rootScope, $route, $location);
+            });
+        });
+
+        var viewCtrl = app.controller("ViewCtrl", function ($scope, $route, $location) {
+            $scope.changeRoute = function () {
+                console.log("Inside ViewCtrl");
+                console.log($scope);
+                $location.path("/new");
+            };
+        });
+
+        app.controller("NewCtrl", function ($scope, loadData, $template) {
+            console.log("Inside NewCtrl");
+            console.log($scope, loadData, $template);
+        });
+        
+        viewCtrl.loadData = function ($q, $timeout) {
+            var defer = $q.defer();
+            $timeout(function () {
+                defer.resolve("loadData done.");
+            }, 1000);
+            return defer.promise;
+        };
+
+    </script>
+</body>
+</html>

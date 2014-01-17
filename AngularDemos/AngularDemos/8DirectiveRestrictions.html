@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angularjs Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/base.css" rel="stylesheet" />
+</head>
+<body data-ng-app="myApp">
+    <h1>In-Built Filters</h1>
+
+    <div>
+        <superman></superman>
+        <div data-superman-attr=""></div>
+        <div class="supermanClass"></div>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.directive('superman', function () {
+            return {
+                restrict: "E",
+                template: "<div>Here I am to save the day!!</div>"
+            };
+        });
+
+        app.directive('supermanAttr', function () {
+            return {
+                restrict: "A",
+                link: function(scope, elem) {
+                    console.log(elem.html("I'm working!!"));
+                }
+            };
+        });
+
+        app.directive('supermanClass', function () {
+            return {
+                restrict: "C",
+                link: function(scope, elem) {
+                    console.log(elem.html("I'm working as a class directive!!"));
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

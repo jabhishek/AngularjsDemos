@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Random User App Using Angularjs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!--<link href="Content/bootstrap.css" rel="stylesheet" />-->
+    <link href="App/styles/base.css" rel="stylesheet" />
+    <script src="Scripts/modernizr-2.7.1.js"></script>
+</head>
+<body data-ng-app="RandomUserApp">
+    <div class="header">
+        <h1>Random Users</h1>
+    </div>
+    <div data-ng-controller="userController" class="main">
+        <div>
+            <div class="userActionPanel">
+                <div class="loadButtons">
+                    <button data-ng-if="!isLoading" data-ng-click="loadMore()">Load More!!</button>
+                    <button data-ng-if="isLoading" data-ng-click="stopLoading()">Stop!!</button>
+                </div>
+                <div class="infoText">{{users.length}} users listed in {{getPages()}} pages!!</div>
+            </div>
+            <div class="pagination">
+                <div class="pageSize">
+                    Page Size: <select data-ng-model="pagingInfo.pageSize" data-ng-change="setPageSize()">
+                        <option value=5>5</option>
+                        <option value=10>10</option>
+                        <option value=20>20</option>
+                        <option value=50>50</option>
+                    </select>
+                </div>
+                <div class="pages">
+                    <ul>
+                        <li data-ng-repeat="i in getNumberAsArray(getPages()) track by $index" data-ng-click="setCurrentPage($index)">
+                            <span data-page-link="" page-number="{{$index + 1}}">{{$index + 1}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="usersList">
+                <div class="userSummary" data-user-summary="" data-user="user" data-ng-repeat="user in users | orderBy: '[age, firstName, lastName]' | startFrom: (pagingInfo.currentPage -1)*pagingInfo.pageSize | limitTo: pagingInfo.pageSize "></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/underscore.min.js"></script>
+    <script src="App/App.js"></script>
+    <script src="App/Filters/startFrom.js"></script>
+    <script src="App/Services/Users.js"></script>
+    <script src="App/Controllers/userController.js"></script>
+    <script src="App/Directives/userSummary.js"></script>
+    <script src="App/Directives/selectElement.js"></script>
+    <script src="App/Directives/pageLink.js"></script>
+    <script>
+
+
+    </script>
+</body>
+</html>
