@@ -10,6 +10,7 @@
      ]">*@
 
 <div class="container-fluid" data-ng-controller="CoursesController">
+    <h3>Courses</h3>
     <div class="row-fluid">
         <table class="table table-condensed table-hover">
             <tr>
@@ -26,10 +27,11 @@
     </div>
 </div>
 
+
 @section Scripts 
 {
     <script>
-    app.factory('bootStrappedData', [function () {
+    app.factory('bootStrappedCourses', [function () {
         return {
             courses: @Html.Raw(Model)
             };

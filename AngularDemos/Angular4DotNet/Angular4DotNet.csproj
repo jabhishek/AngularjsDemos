@@ -108,16 +108,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\RegistrationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Courses\CourseVm.cs" />
+    <Compile Include="Models\Instructors\InstructorVm.cs" />
+    <Compile Include="Models\Registration\RegistrationVm.cs" />
+    <Compile Include="Models\Registration\RegistrationVmBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App\Courses\Controllers\InstructorsController.js" />
     <Content Include="App\Courses\Controllers\CoursesController.js" />
     <Content Include="App\Modules\registrationApp.js" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -405,11 +412,11 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Instructors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Courses\Services\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

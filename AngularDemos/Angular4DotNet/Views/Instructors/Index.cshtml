@@ -1,0 +1,32 @@
+﻿@model string
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid" data-ng-controller="InstructorsController">
+    <h3>Instructors</h3>
+    <div class="row-fluid">
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Room</th>
+            </tr>
+            <tr data-ng-repeat="instructor in instructors">
+                <td>{{instructor.name}}</td>
+                <td>{{instructor.email}}</td>
+                <td>{{instructor.roomNumber}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        app.factory('bootStrappedInstructors', [function () {
+        return {
+            instructors: @Html.Raw(Model)
+            };
+    }]);
+    </script>
+    <script src="~/App/Courses/Controllers/InstructorsController.js"></script>
+}
