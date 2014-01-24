@@ -1,5 +1,5 @@
-﻿app.controller("InstructorsController", ['$scope', 'bootStrappedInstructors',
-    function ($scope, bootStrappedInstructors) {
-        $scope.instructors = bootStrappedInstructors.instructors;
+﻿app.controller("InstructorsController", ['$scope', 'bootStrappedData',
+    function ($scope, bootStrappedData) {
+        $scope.instructors = bootStrappedData.instructors;
     }
 ]);

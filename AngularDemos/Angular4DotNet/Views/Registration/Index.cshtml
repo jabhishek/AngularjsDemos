@@ -1,0 +1,36 @@
+﻿@model Angular4DotNet.Models.Registration.RegistrationVm
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="#">Registration</a>
+                <ul class="nav">
+                    <li><a href="/Registration/Courses">Courses</a></li>
+                    <li><a href="/Registration/Instructors">Instructors</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div ng-view=""></div>
+</div>
+
+@section Scripts
+{
+    <script src="~/App/Courses/Controllers/CoursesController.js"></script>
+    <script src="~/App/Courses/Controllers/InstructorsController.js"></script>
+    <script>
+        app.factory('bootStrappedData', [function () {
+            return {
+                courses: @Html.Raw(Model.Courses),
+                instructors: @Html.Raw(Model.Instructors)
+            };
+        }]);
+    </script>
+    
+}

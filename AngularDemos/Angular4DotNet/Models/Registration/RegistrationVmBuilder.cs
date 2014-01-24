@@ -11,14 +11,13 @@ namespace Angular4DotNet.Models.Registration
 {
     public class RegistrationVmBuilder
     {
-        public string GetRegistrations()
+        public RegistrationVm GetRegistrations()
         {
             var registration = new RegistrationVm
             {
                 Courses = GetCourses(), Instructors= GetInstructors()
             };
-            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-            return JsonConvert.SerializeObject(registration, Formatting.None, settings);
+            return registration;
         }
 
         public string GetCourses()

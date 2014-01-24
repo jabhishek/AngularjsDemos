@@ -5,16 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Angular4DotNet.Controllers
+namespace Angular4DotNet.App.Courses.Controllers
 {
-    public class RegistrationsController : Controller
+    public class RegistrationController : Controller
     {
         //
-        // GET: /Registrations/
+        // GET: /Registration/
         private readonly RegistrationVmBuilder _registrationVmBuilder = new RegistrationVmBuilder();
         public ActionResult Index()
         {
-            return View("Index", "", _registrationVmBuilder.GetRegistrations());
+            return View(_registrationVmBuilder.GetRegistrations());
         }
 
     }

@@ -1,0 +1,17 @@
+﻿<div class="container-fluid">
+    <h3>Instructors</h3>
+    <div class="row-fluid">
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Room</th>
+            </tr>
+            <tr data-ng-repeat="instructor in instructors">
+                <td>{{instructor.name}}</td>
+                <td>{{instructor.email}}</td>
+                <td>{{instructor.roomNumber}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

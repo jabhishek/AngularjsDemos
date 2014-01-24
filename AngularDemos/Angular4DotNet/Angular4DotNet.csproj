@@ -108,9 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\InstructorsController.cs" />
-    <Compile Include="Controllers\CoursesController.cs" />
-    <Compile Include="Controllers\RegistrationsController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -126,7 +124,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App\Courses\Controllers\InstructorsController.js" />
     <Content Include="App\Courses\Controllers\CoursesController.js" />
+    <Content Include="App\Courses\Controllers\RegistrationController.js" />
     <Content Include="App\Modules\registrationApp.js" />
+    <Content Include="App\Templates\courses.html" />
+    <Content Include="App\Templates\instructors.html" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -413,6 +414,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Instructors\Index.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Courses\Services\" />

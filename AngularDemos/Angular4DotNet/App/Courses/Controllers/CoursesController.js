@@ -1,5 +1,5 @@
-﻿app.controller("CoursesController", ['$scope', 'bootStrappedCourses',
-    function ($scope, bootStrappedCourses) {
-        $scope.courses = bootStrappedCourses.courses;
+﻿app.controller("CoursesController", ['$scope', 'bootStrappedData',
+    function ($scope, bootStrappedData) {
+        $scope.courses = bootStrappedData.courses;
     }
 ]);
