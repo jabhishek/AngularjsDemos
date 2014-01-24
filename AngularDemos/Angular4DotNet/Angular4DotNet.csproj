@@ -118,6 +118,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App\Courses\Controllers\CoursesController.js" />
+    <Content Include="App\Modules\registrationApp.js" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -405,6 +407,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\Courses\Services\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
