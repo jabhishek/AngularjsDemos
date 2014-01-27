@@ -2,7 +2,7 @@
     return {
         get: function () {
             var deferred = $q.defer();
-            $http.get('/Instructors/GetInstructors')
+            $http.get('/api/Instructors')
                 .success(deferred.resolve)
                 .error(deferred.reject);
             return deferred.promise;

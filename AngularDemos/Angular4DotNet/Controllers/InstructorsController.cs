@@ -1,20 +1,22 @@
-﻿using Angular4DotNet.Models.Registration;
+﻿using Angular4DotNet.Models.Instructors;
+using Angular4DotNet.Models.Registration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Angular4DotNet.Controllers
 {
-    public class InstructorsController : JsonController
+    public class InstructorsController : ApiController
     {
         //
         // GET: /Courses/
         private readonly RegistrationVmBuilder _registrationVmBuilder = new RegistrationVmBuilder();
-        public ActionResult GetInstructors()
+        public InstructorVm[] Get()
         {
-            return Json(_registrationVmBuilder.GetInstructors(), JsonRequestBehavior.AllowGet);
+            return _registrationVmBuilder.GetInstructors();
         }
 
     }
