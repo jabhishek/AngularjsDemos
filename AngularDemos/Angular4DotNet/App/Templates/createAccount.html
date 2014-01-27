@@ -1,0 +1,26 @@
+﻿<div class="container-fluid">
+    <h3>Create Account</h3>
+    <div class="label label-warning" data-ng-show="error">Error on page!!</div>
+    <div class="row-fluid">
+        <div class="form-actions">
+            <div>
+                <label>First Name</label>
+                <input type="text" data-ng-model="student.firstName" class="input input-medium" />
+            </div>
+            <div>
+                <label>Last Name</label>
+                <input type="text" data-ng-model="student.lastName" class="input input-medium" />
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="text" data-ng-model="student.email" class="input input-medium" />
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" data-ng-model="student.password" class="input input-medium" />
+            </div>
+            <button class="btn btn-success" data-ng-click="save(student)">Save</button>
+            <button class="btn btn-warning" data-ng-click="reset()">Reset</button>
+        </div>
+    </div>
+</div>

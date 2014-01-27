@@ -108,8 +108,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\InstructorsController.cs" />
+    <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -126,11 +128,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App\Courses\Controllers\InstructorsController.js" />
     <Content Include="App\Courses\Controllers\CoursesController.js" />
+    <Content Include="App\Courses\Controllers\AccountController.js" />
     <Content Include="App\Courses\Controllers\RegistrationController.js" />
+    <Content Include="App\Courses\Services\accountRepository.js" />
     <Content Include="App\Courses\Services\instructorsRepository.js" />
     <Content Include="App\Courses\Services\courseRepository.js" />
     <Content Include="App\Modules\registrationApp.js" />
     <Content Include="App\Templates\courses.html" />
+    <Content Include="App\Templates\createAccount.html" />
     <Content Include="App\Templates\NotFound.html" />
     <Content Include="App\Templates\instructors.html" />
     <Content Include="Content\bootstrap-responsive.css" />

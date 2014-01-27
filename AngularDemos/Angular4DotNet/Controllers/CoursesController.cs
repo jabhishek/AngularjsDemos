@@ -7,12 +7,12 @@ using System.Web.Mvc;
 
 namespace Angular4DotNet.Controllers
 {
-    public class CoursesController : Controller
+    public class CoursesController : JsonController
     {
         //
         // GET: /Courses/
         private readonly RegistrationVmBuilder _registrationVmBuilder = new RegistrationVmBuilder();
-        public JsonResult GetCourses()
+        public ActionResult GetCourses()
         {
             return Json(_registrationVmBuilder.GetCourses(), JsonRequestBehavior.AllowGet);
         }
