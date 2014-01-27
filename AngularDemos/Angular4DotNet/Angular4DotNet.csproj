@@ -108,6 +108,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -125,6 +127,8 @@
     <Content Include="App\Courses\Controllers\InstructorsController.js" />
     <Content Include="App\Courses\Controllers\CoursesController.js" />
     <Content Include="App\Courses\Controllers\RegistrationController.js" />
+    <Content Include="App\Courses\Services\instructorsRepository.js" />
+    <Content Include="App\Courses\Services\courseRepository.js" />
     <Content Include="App\Modules\registrationApp.js" />
     <Content Include="App\Templates\courses.html" />
     <Content Include="App\Templates\NotFound.html" />
@@ -417,7 +421,6 @@
     <Content Include="Views\Registration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Courses\Services\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

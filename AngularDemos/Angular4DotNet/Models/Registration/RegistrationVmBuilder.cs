@@ -11,16 +11,7 @@ namespace Angular4DotNet.Models.Registration
 {
     public class RegistrationVmBuilder
     {
-        public RegistrationVm GetRegistrations()
-        {
-            var registration = new RegistrationVm
-            {
-                Courses = GetCourses(), Instructors= GetInstructors()
-            };
-            return registration;
-        }
-
-        public string GetCourses()
+        public CourseVm[] GetCourses()
         {
             var courses = new[]
             {
@@ -28,11 +19,10 @@ namespace Angular4DotNet.Models.Registration
                 new CourseVm {Number= "2", Name = "Angularjs", Instructor= "Joe Eames"},
                 new CourseVm {Number= "3", Name = "Javascript", Instructor= "Elijah Manor"}
             };
-            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-            return JsonConvert.SerializeObject(courses, Formatting.None, settings);
+            return courses;
         }
 
-        public string GetInstructors()
+        public InstructorVm[] GetInstructors()
         {
             var instructors = new[]
             {
@@ -40,8 +30,7 @@ namespace Angular4DotNet.Models.Registration
                 new InstructorVm {Name = "Joe Eames", Email= "JoeEames@gmail.com", RoomNumber="102"},
                 new InstructorVm {Name = "Elijah Manor", Email= "ElijahManor@gmail.com", RoomNumber="103"}
             };
-            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-            return JsonConvert.SerializeObject(instructors, Formatting.None, settings);
+            return instructors;
         }
     }
 }

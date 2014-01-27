@@ -1,5 +1,8 @@
-﻿app.controller("CoursesController", ['$scope', 'bootStrappedData',
-    function ($scope, bootStrappedData) {
-        $scope.courses = bootStrappedData.courses;
+﻿app.controller("CoursesController", ['$scope', 'courseRepository',
+    function ($scope, courseRepository) {
+        courseRepository.get()
+            .then(function (courses) {
+                $scope.courses = courses;
+            });
     }
 ]);

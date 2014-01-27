@@ -11,10 +11,9 @@ namespace Angular4DotNet.App.Courses.Controllers
     {
         //
         // GET: /Registration/
-        private readonly RegistrationVmBuilder _registrationVmBuilder = new RegistrationVmBuilder();
         public ActionResult Index()
         {
-            return View(_registrationVmBuilder.GetRegistrations());
+            return View();
         }
 
     }

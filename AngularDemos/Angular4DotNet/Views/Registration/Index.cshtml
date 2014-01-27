@@ -1,5 +1,4 @@
-﻿@model Angular4DotNet.Models.Registration.RegistrationVm
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -22,15 +21,8 @@
 
 @section Scripts
 {
+    <script src="~/App/Courses/Services/courseRepository.js"></script>
+    <script src="~/App/Courses/Services/instructorsRepository.js"></script>
     <script src="~/App/Courses/Controllers/CoursesController.js"></script>
     <script src="~/App/Courses/Controllers/InstructorsController.js"></script>
-    <script>
-        app.factory('bootStrappedData', [function () {
-            return {
-                courses: @Html.Raw(Model.Courses),
-                instructors: @Html.Raw(Model.Instructors)
-            };
-        }]);
-    </script>
-    
 }
