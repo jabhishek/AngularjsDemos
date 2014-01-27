@@ -1,6 +1,7 @@
-﻿var registrationModule = angular.module("registrationModule", [])
+﻿var app = angular.module("registrationModule", ['ngRoute'])
     .config(function ($routeProvider, $locationProvider) {
-        $routeProvider.when('/Registration/Courses', { templateUrl: '/templates/courses.html', controller: 'CoursesController' });
-        $routeProvider.when('/Registration/Instructors', { templateUrl: '/templates/instructors.html', controller: 'InstructorsController' });
+        $routeProvider.when('/Registration/Courses', { templateUrl: '/App/Templates/courses.html', controller: 'CoursesController' });
+        $routeProvider.when('/Registration/Instructors', { templateUrl: '/App/Templates/instructors.html', controller: 'InstructorsController' });
+        $routeProvider.otherwise({ templateUrl: '/App/Templates/NotFound.html' })
         $locationProvider.html5Mode(true);
     });

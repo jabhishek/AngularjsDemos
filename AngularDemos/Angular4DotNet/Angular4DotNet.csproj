@@ -127,6 +127,7 @@
     <Content Include="App\Courses\Controllers\RegistrationController.js" />
     <Content Include="App\Modules\registrationApp.js" />
     <Content Include="App\Templates\courses.html" />
+    <Content Include="App\Templates\NotFound.html" />
     <Content Include="App\Templates\instructors.html" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
@@ -413,7 +414,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Instructors\Index.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -422,9 +422,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Courses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\errors.json" />
