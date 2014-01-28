@@ -2,11 +2,11 @@
 function ($scope, accountRepository, $location) {
     $scope.student = {
     };
-    $scope.error = false;
+    $scope.errors = [];
 
 
     $scope.reset = function () {
-        $scope.error = false;
+        $scope.errors = [];
         $scope.student = {
         };
     };
@@ -16,9 +16,9 @@ function ($scope, accountRepository, $location) {
             console.log("Saved.");
             $location.url("Registration/Courses");
         }, 
-        function () {
-            console.log("Failed.");
-            $scope.error = true;
+        function (response) {
+            console.log(response);
+            $scope.errors = response.data;
         });
     };
 

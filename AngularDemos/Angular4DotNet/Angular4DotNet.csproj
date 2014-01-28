@@ -120,6 +120,7 @@
     <Compile Include="Models\Instructors\InstructorVm.cs" />
     <Compile Include="Models\Registration\RegistrationVm.cs" />
     <Compile Include="Models\Registration\RegistrationVmBuilder.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
