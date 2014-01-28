@@ -6,26 +6,33 @@
             {{error}}
         </div>
     </div>
-    <div class="row-fluid">
-        <div class="form-actions">
-            <div>
-                <label>First Name</label>
-                <input type="text" data-ng-model="student.firstName" class="input input-medium" />
+    <form name="accountForm" novalidate>
+        <div class="row-fluid">
+            <div class="form-actions">
+                <div>
+                    <label>First Name</label>
+                    <input type="text" name="firstName" data-ng-model="student.firstName" class="input input-medium" required />
+                    <div class="text warning" ng-show="accountForm.firstName.$error.required && accountForm.firstName.$dirty">Please enter your first name</div>
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" data-ng-model="student.lastName" class="input input-medium" required />
+                    <div class="text warning" ng-show="accountForm.lastName.$error.required && accountForm.lastName.$dirty">Please enter your last name</div>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="text" name="email" data-ng-model="student.email" class="input input-medium" required ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/" />
+                    <div class="text warning" ng-show="accountForm.email.$error.required && accountForm.email.$dirty">Please enter your email address</div>
+                    <div class="text warning" ng-show="accountForm.email.$error.pattern && accountForm.email.$dirty">Please enter a valid email address</div>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" name="password" data-ng-model="student.password" class="input input-medium" required />
+                    <div class="text warning" ng-show="accountForm.password.$error.required && accountForm.password.$dirty">Please enter a password</div>
+                </div>
+                <button class="btn btn-success" ng-disabled="accountForm.$invalid" data-ng-click="save(student)">Save</button>
+                <button class="btn btn-warning" ng-if="accountForm.$dirty" data-ng-click="reset()">Reset</button>
             </div>
-            <div>
-                <label>Last Name</label>
-                <input type="text" data-ng-model="student.lastName" class="input input-medium" />
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="text" data-ng-model="student.email" class="input input-medium" />
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" data-ng-model="student.password" class="input input-medium" />
-            </div>
-            <button class="btn btn-success" data-ng-click="save(student)">Save</button>
-            <button class="btn btn-warning" data-ng-click="reset()">Reset</button>
         </div>
-    </div>
+    </form>
 </div>
