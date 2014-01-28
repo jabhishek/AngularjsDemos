@@ -1,11 +1,7 @@
-﻿app.factory('accountRepository', ['$http', '$q', function ($http, $q) {
+﻿app.factory('accountRepository', ['$resource', function ($resource) {
     return {
         save: function (student) {
-            var deferred = $q.defer();
-            $http.post('/Account/Save', student)
-                .success(function () { deferred.resolve(); })
-                .error(function () { deferred.reject(); });
-            return deferred.promise;
+            return $resource('/api/Account').save(student);
         }
     };
 }]);

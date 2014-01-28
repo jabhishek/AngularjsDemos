@@ -1,11 +1,7 @@
-﻿app.factory('courseRepository', ['$http', '$q', function ($http, $q) {
+﻿app.factory('courseRepository', ['$resource', function ($resource) {
     return {
         get: function () {
-            var deferred = $q.defer();
-            $http.get('/api/Courses')
-                .success(deferred.resolve)
-                .error(deferred.reject);
-            return deferred.promise;
+            return $resource('/api/Courses').query();
         }
     };
 }]);

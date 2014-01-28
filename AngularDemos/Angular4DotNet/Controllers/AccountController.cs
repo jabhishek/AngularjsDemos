@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Angular4DotNet.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : ApiController
     {
         //
         // GET: /Account/
-        [HttpPost]
-        public ActionResult Save(Student student)
+        public HttpResponseMessage Post(Student student)
         {
             // do something
-            return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
     }

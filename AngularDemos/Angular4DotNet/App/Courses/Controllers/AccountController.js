@@ -12,7 +12,7 @@ function ($scope, accountRepository, $location) {
     };
 
     $scope.save = function (student) {
-        accountRepository.save(student).then(function () {
+        accountRepository.save(student).$promise.then(function () {
             console.log("Saved.");
             $location.url("Registration/Courses");
         }, 
